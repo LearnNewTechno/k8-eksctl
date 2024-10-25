@@ -5,7 +5,7 @@ metadata:
   name: expense-1
   region: us-east-1
 
-nodeGroups:
+managedNodeGroups:
   - name: ng-1
     instanceType: m5.large
     desiredCapacity: 3
