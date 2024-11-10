@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # disk partition
-
-sudo growpart /dev/nvme0n1 4
+name=$(lsblk -dn -o NAME | head -n 1)
+sudo growpart /dev/$name 4
 sudo lvextend -l +50%FREE /dev/RootVG/rootVol
 sudo lvextend -l +50%FREE /dev/RootVG/varVol
 
