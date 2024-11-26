@@ -2,11 +2,14 @@
 
 # disk partition
 name=$(lsblk -dn -o NAME | head -n 1)
+
 sudo growpart /dev/$name 4
-sudo lvextend -l +50%FREE /dev/RootVG/rootVol
-sudo lvextend -l +50%FREE /dev/RootVG/varVol
+sudo lvextend -L +10G /dev/RootVG/rootVol
+sudo lvextend -L +10G /dev/mapper/RootVG-varVol
+sudo lvextend -l +100%FREE /dev/mapper/RootVG-varTmpVol
 
 sudo xfs_growfs /
+sudo xfs_growfs /var/tmp
 sudo xfs_growfs /var
 
 # kubectl install
